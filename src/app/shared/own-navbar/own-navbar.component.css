@@ -1,0 +1,12 @@
+.color-me {
+    font-weight: bold;
+    background: -webkit-linear-gradient(left, #C33764, #1D2671);
+}
+
+.nav-item .nav-link {
+    color: white;
+}
+
+.navbar {
+    color: white;
+}

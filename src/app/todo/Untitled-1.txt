@@ -1,0 +1,59 @@
+      <mat-drawer-container class="list-container" [hasBackdrop]="false">
+
+        <mat-drawer #drawerList mode="value" opened class="list-sidenav">I'm a drawer</mat-drawer>
+
+        <mat-drawer #drawerFriends mode="value" opened position="end" class="list-sidenav">I'm a drawer2</mat-drawer>
+        
+        <mat-drawer-content class="list-sidenav-content">
+          <button mat-raised-button (click)="drawerList.toggle()"><i class="fas fa-bars"></i></button>
+
+          <button mat-raised-button (click)="drawerFriends.toggle()"><i class="fas fa-bars"></i></button>
+
+        </mat-drawer-content>
+        
+      </mat-drawer-container>
+
+
+
+
+<nav class="navbar sticky-top navbar-expand-lg navbar-light" style="background-color:#48CDC8">
+  <a class="navbar-brand" href="#">To-Do</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarToggler">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">Disabled</a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search">
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <i class="fas fa-ellipsis-v"></i>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+          <mat-icon>dialpad</mat-icon>
+          <span>Redial</span>
+        </button>
+        <button mat-menu-item disabled>
+          <mat-icon>voicemail</mat-icon>
+          <span>Check voicemail</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>notifications_off</mat-icon>
+          <span>Disable alerts</span>
+        </button>
+      </mat-menu>
+    </form>
+  </div>
+</nav>

@@ -1,0 +1,78 @@
+<div class="container-fluid px-1 px-md-5 px-lg-1 px-xl-5 py-5 mx-auto">
+    <div class="card card0 border-0">
+        <div class="row d-flex">
+            <div class="col-lg-6">
+                <div class="card1 pb-5">
+                    <div class="row px-3 justify-content-center mt-4 mb-5" style="width:450px;margin-left:20px;">
+                        <h2>A Simple All-In-One Application
+                            <p class="btn btn-primary"><b>To-Do</b></p> your Tasks Faster!</h2>
+                    </div>
+
+                    <div class="row px-3 justify-content-center mt-4 mb-5 border-line"> <img src="./assets/tidily.png" class="image"> </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <form id="loginform" class="form-horizontal" role="form" #loginForm="ngForm">
+                    <div class="card2 card border-0 px-4 py-5">
+                        <div class="row mb-4 px-3">
+                            <h6 class="mb-0 mr-4 mt-2">Sign in To-Do the Tasks</h6>
+
+                        </div>
+                        <div class="row px-3 mb-4">
+                            <div class="line"></div>
+                            <div class="line"></div>
+                        </div>
+                        <div class="row px-3">
+                            <label class="mb-1">
+                            <h6 class="mb-0 text-sm">Email Address</h6>
+                        </label>
+                            <input placeholder="Enter your email" [formControl]="email" class="mb-4" required autofocus>
+                            <!--Alert-->
+                            <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
+                                <div *ngIf="email.errors">
+                                    {{getErrorMessage()}}
+
+                                </div>
+                            </div>
+                            <!--Alert ends-->
+
+                        </div>
+                        <div class="row px-3"> <label class="mb-1">
+                            <h6 class="mb-0 text-sm">Password</h6>
+                        </label>
+                            <input type="password" placeholder="Enter your Password" minlength="8" #pwd="ngModel" [(ngModel)]="password" name="password" (keydown)="loginUsingKeypress($event)" required>
+
+                            <!--ALERT-->
+                            <div [hidden]="pwd.valid || pwd.pristine" class="alert alert-danger">
+                                <div *ngIf="pwd.errors?.minlength">
+                                    ** Password should contain atleast 8 characters!
+                                </div>
+                                <div *ngIf="pwd.errors?.required">
+                                    ** Password is required!
+                                </div>
+                            </div>
+                            <!--Alert ends-->
+
+                        </div>
+                        <div class="row px-3 mb-4">
+                            <div class="custom-control custom-checkbox custom-control-inline" style="margin-left:3px;"> <a [routerLink]="['/user/forgot-password']" class="ml-auto mb-0 text-sm">Forgot Password?</a> </div>
+                        </div>
+                        <div class="row mb-3 px-3">
+                            <button style="float:right" id="btn-signin" type="button" class="btn btn-blue text-center" (click)="signInFunction()" [disabled]="!loginForm.valid">
+                            Login
+                        </button>
+
+                        </div>
+
+                        <div class="row mb-4 px-3"> <small class="font-weight-bold">Don't have an account? <a class="text-danger" [routerLink]="['/user/signup']">Register</a></small> </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="bg-blue py-4">
+            <div class="row px-3"> <small class="ml-4 ml-sm-5 mb-2">Copyright &copy; 2020. All rights reserved.</small>
+
+            </div>
+        </div>
+    </div>
+</div>

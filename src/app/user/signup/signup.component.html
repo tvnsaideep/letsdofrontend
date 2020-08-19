@@ -1,0 +1,129 @@
+<div class="container-fluid px-1 px-md-5 px-lg-1 px-xl-5 py-5 mx-auto">
+    <div class="card card0 border-0">
+        <div class="row d-flex">
+            <div class="col-lg-6">
+                <div class="card1 pb-5">
+                    <div class="row px-3 justify-content-center mt-4 mb-5" style="width:450px;margin-left:20px;">
+                        <h2>A Simple All-In-One Application
+                            <p class="btn btn-primary"><b>To-Do</b></p> your Tasks Faster!</h2>
+                    </div>
+
+                    <div class="row px-3 justify-content-center mt-4 mb-5 border-line"> <img src="./assets/tidily.png" class="image"> </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <form id="signupform" class="form-horizontal" role="form" #signupForm="ngForm">
+                    <div class="card2 card border-0 px-4 py-5">
+                        <div class="row mb-4 px-3">
+                            <h6 class="mb-0 mr-4 mt-2">Let's Quickly Make Our List</h6>
+
+                        </div>
+                        <div class="row px-3 mb-4">
+                            <div class="line"></div>
+                            <div class="line"></div>
+                        </div>
+                        <div class="row px-3">
+                            <label class="mb-1">
+                          <h6 class="mb-0 text-sm">First Name</h6>
+                      </label>
+                            <input placeholder="Enter your First Name" minlength="3" #fstName="ngModel" [(ngModel)]="firstName" name="firstName" required>
+                            <!--Alert When Pattern not matches-->
+                            <div [hidden]="fstName.pristine || fstName.valid" class="alert alert-danger">
+                                <div *ngIf="fstName.errors?.pattern">
+                                    ** First name should contain only alphabets !
+                                    <div *ngIf="fstName.errors?.minlength">
+                                        ** First Name should contain minimum 3 letters!
+                                    </div>
+                                </div>
+                                <div *ngIf="fstName.errors?.required">
+                                    ** First Name is required!
+                                </div>
+                            </div>
+                            <!--alert ends-->
+
+                        </div>
+                        <div class="row px-3"> <label class="mb-1">
+                        <h6 class="mb-0 text-sm">Last Name</h6>
+                    </label>
+                            <input placeholder="Enter your Last Name" minlength="3" #lstName="ngModel" [(ngModel)]="lastName" name="lastName" required>
+
+                            <!--ALERT-->
+                            <div [hidden]="lstName.valid || lstName.pristine" class="alert alert-danger">
+                                <div *ngIf="lstName.errors?.minlength">
+                                    ** Last Name should contain atleast 3 characters!
+                                </div>
+                                <div *ngIf="lstName.errors?.required">
+                                    **Last Name is required!
+                                </div>
+                            </div>
+                            <!--Alert ends-->
+
+                        </div>
+                        <div class="row px-3"> <label class="mb-1">
+                      <h6 class="mb-0 text-sm">Email</h6>
+                  </label>
+                            <input placeholder="Enter your email" [formControl]="email" required>
+
+                            <!--ALERT-->
+                            <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
+                                <div *ngIf="email.invalid">
+                                    {{getErrorMessage()}}
+                                </div>
+                            </div>
+                            <!--Alert ends-->
+
+                        </div>
+                        <div class="row px-3"> <label class="mb-1">
+                    <h6 class="mb-0 text-sm">Password</h6>
+                </label>
+                            <input type="password" placeholder="Enter your Password" minlength="8" #pwd="ngModel" [(ngModel)]="password" name="password" required>
+
+                            <!--ALERT-->
+                            <div [hidden]="pwd.valid || pwd.pristine" class="alert alert-danger">
+                                <div *ngIf="pwd.errors?.minlength">
+                                    ** Password should contain atleast 8 characters!
+                                </div>
+                                <div *ngIf="pwd.errors?.required">
+                                    ** Password is required!
+                                </div>
+                            </div>
+                            <!--Alert ends-->
+
+                        </div>
+                        <div class="row px-3"> <label class="mb-1">
+                  <h6 class="mb-0 text-sm">Country</h6>
+              </label>
+                            <select name="country" [(ngModel)]="country" class="form-control" id="inputCountry" (change)="onChangeOfCountry()" required>
+                <option value="">Country</option>
+                <option *ngFor="let country of countries" [value]="country.code">{{country.name}}</option>
+              </select>
+                            <div class="input-group">
+                                <div class="input-group-text">+{{countryCode}}</div>
+                                <input placeholder="Mobile Number" type="number" class="example-right-align" [(ngModel)]="mobileNumber" name="mobileNumber" pattern="^\d{10}$" maxlength="10" #mobNumber="ngModel" required>
+                            </div>
+
+
+                        </div>
+
+                        <div class="row px-3 mb-4">
+                            <div class="custom-control custom-checkbox custom-control-inline" style="margin-left:3px;"> <a [routerLink]="['/user/forgot-password']" class="ml-auto mb-0 text-sm">Forgot Password?</a> </div>
+                        </div>
+                        <div class="row mb-3 px-3">
+                            <button id="btn-signup" type="button" class="btn btn-primary" (click)="signupFunction()" [disabled]="!signupForm.valid">
+                          <i class="icon-hand-right"></i> Sign Up</button>
+
+
+                        </div>
+
+                        <div class="row mb-4 px-3"> <small class="font-weight-bold">Already have an account? <a class="text-danger" [routerLink]="['/user/login']">Sign In</a></small> </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="bg-blue py-4">
+            <div class="row px-3"> <small class="ml-4 ml-sm-5 mb-2">Copyright &copy; 2020. All rights reserved.</small>
+
+            </div>
+        </div>
+    </div>
+</div>

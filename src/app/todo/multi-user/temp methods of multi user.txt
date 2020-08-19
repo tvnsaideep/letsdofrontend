@@ -1,0 +1,111 @@
+  public getAllUsers = () => {
+
+    //this function will get all the users. 
+
+    if (this.authToken != null) {
+      this.appService.getAllUsers(this.authToken).subscribe((apiResponse) => {
+        if (apiResponse.status == 200) {
+
+          this.allUsers = apiResponse.data;
+
+          this.allUsers = this.allUsers.filter(user => user.userId != this.userId);
+
+          /* Will set a connected flag true if both the user are friends */
+          for (let user of this.allUsers) {
+            for (let friend of this.userFriends) {
+              if (user.userId == friend.friendId) {
+                user.connected = true
+              }
+            }
+          }
+
+
+
+          /* Remove user from all users list if he is is in the list of sent requests*/
+          for (let user of this.allUsers) {
+            for (let friendSent of this.requestSents) {
+              if (user.userId == friendSent.friendId) {
+                this.allUsers = this.allUsers.filter(user => user.userId != friendSent.friendId);
+              }
+            }
+          }
+
+          /* Remove user from all users list if he is is in the list of requests recieved*/
+          for (let user of this.allUsers) {
+            for (let friendRecieved of this.requestRecieved) {
+              if (user.userId == friendRecieved.friendId) {
+                this.allUsers = this.allUsers.filter(user => user.userId != friendRecieved.friendId);
+              }
+            }
+          }
+
+          console.log(this.allUsers)
+
+        }
+        else {
+          this.toastr.info(apiResponse.message, "Update!");
+
+        }
+      },
+        (error) => {
+          if (error.status == 400) {
+            this.toastr.warning("User List falied to Update", "Error!");
+          }
+          else {
+            this.toastr.error("Some Error Occurred", "Error!");
+            this.router.navigate(['/serverError']);
+
+          }
+        }//end error
+      );//end appservice.getAllUsers
+
+    }//end if checking undefined
+    else {
+      this.toastr.info("Missing Authorization Key", "Please login again");
+      this.router.navigate(['/user/login']);
+
+    }
+
+  }//end getAllUsers
+
+  public getUserDetailsFunction = () => {
+
+    //this function will get all the details of user. 
+
+    if (this.authToken != null && this.userId != null) {
+      this.appService.getUserDetails(this.userId, this.authToken).subscribe((apiResponse) => {
+        if (apiResponse.status == 200) {
+
+          this.userDetails = apiResponse.data;
+          this.userFriends = this.userDetails.friends;
+          this.requestSents = this.userDetails.friendRequestSent;
+          this.requestRecieved = this.userDetails.friendRequestRecieved;
+
+          console.log(this.userDetails)
+          console.log(this.requestRecieved)
+        }
+        else {
+          this.toastr.info(apiResponse.message, "Update!");
+
+        }
+      },
+        (error) => {
+          if (error.status == 400) {
+            this.toastr.warning("User Details not found", "Error!");
+          }
+          else {
+            this.toastr.error("Some Error Occurred", "Error!");
+            this.router.navigate(['/serverError']);
+
+          }
+        }//end error
+      );//end appservice.getuserdetails
+
+    }//end if checking undefined
+    else {
+      this.toastr.info("Missing Authorization Key", "Please login again");
+      this.router.navigate(['/user/login']);
+
+    }
+
+  }//end getAllUserDetails

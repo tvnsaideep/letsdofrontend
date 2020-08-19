@@ -1,0 +1,35 @@
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light color-me">
+        <a class="navbar-brand" href="#">To-Do</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler"
+          aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarToggler">
+          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item " [ngClass]="{'active':activeNav === 'own'}">
+              <a class="nav-link" [routerLink]="['/todo/single-user']"  >Your Dashboard </a>
+            </li>
+            <li class="nav-item" [ngClass]="{'active':activeNav === 'other'}">
+              <a class="nav-link" [routerLink]="['/todo/multi-user']" >Friends Dashboard</a>
+            </li>
+            <li class="nav-item" [ngClass]="{'active':activeNav === 'friends'}">
+              <a class="nav-link" [routerLink]="['/todo/manage-friends']" >Friends</a>
+            </li>
+    
+          </ul>
+    
+          <form class="form-inline my-2 my-lg-0">
+            <div style="margin-right:5px">
+                <a> Hi , {{userName ? userName : 'Admin'}} </a>
+            </div>
+            
+            <div class="btn-group" role="group" style="float: right;">          
+              <button type="button" class="btn btn-info" (click)="logoutFunction()">
+                Log Out
+              </button>
+            </div>
+          </form>
+    
+        </div>
+    </nav>

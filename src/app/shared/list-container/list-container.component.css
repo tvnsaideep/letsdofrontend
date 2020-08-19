@@ -1,0 +1,61 @@
+.list-container {
+    height: 78vh;
+    width: 100%;
+}
+
+.list-sidenav-content {
+    height: 100%;
+    background-color: #ffffff;
+}
+
+.list-sidenav {
+    width: 30vw;
+    background-color: white;
+}
+
+.nav .nav-item :hover {
+    background-color: #ffffff;
+}
+
+.taskList {
+    margin-left: 2em;
+}
+
+.taskList:hover {
+    background-color: #F4F4F4;
+}
+
+.markDone {
+    color: green;
+}
+
+.strikethrough {
+    text-decoration: line-through;
+}
+
+h4,
+i {
+    color: #6abdec;
+}
+
+.box {
+    box-shadow: 0 4px 8px 0 #213a5a, 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+/* Media Query for 320px - 454px Devices*/
+
+@media only screen and (min-width:300px) and (max-width:454px) {
+    .list-sidenav {
+        width: 80vw;
+    }
+}
+
+
+/* Media Query for 455px - 768px Devices*/
+
+@media only screen and (min-width:455px) and (max-width:768px) {
+    .list-sidenav {
+        width: 50vw;
+    }
+}
